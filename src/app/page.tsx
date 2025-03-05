@@ -11,14 +11,11 @@ import { useEffect } from "react";
 export default function Home() {
   // Smooth scroll implementation
   useEffect(() => {
-    const handleAnchorClick = (e) => {
-      const target = e.target;
-      if (
-        target.tagName === "A" &&
-        target.getAttribute("href")?.startsWith("#")
-      ) {
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === "A" && target.getAttribute("href")) {
         e.preventDefault();
-        const id = target.getAttribute("href").slice(1);
+        const id = target.getAttribute("href")!.slice(1);
         const element = document.getElementById(id);
         if (element) {
           element.scrollIntoView({
@@ -43,11 +40,9 @@ export default function Home() {
       <div id="services">
         <Services />
       </div>
-
       <div id="team">
         <Team />
       </div>
-
       <div id="contact">
         <Contact />
       </div>

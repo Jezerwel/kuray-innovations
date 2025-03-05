@@ -1,10 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Anchor, Target, Lightbulb } from "lucide-react";
+import { Anchor, Target, LucideIcon } from "lucide-react";
 import Image from "next/image";
 
-function AboutCard({ icon: Icon, title, description }) {
+interface AboutCardProps {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
+
+function AboutCard({ icon: Icon, title, description }: AboutCardProps) {
   return (
     <motion.div
       whileHover={{ y: -10 }}

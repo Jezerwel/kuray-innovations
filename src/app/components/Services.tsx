@@ -119,7 +119,7 @@ export default function Services() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <ServiceCard {...service} index={index} />
+              <ServiceCard {...service} />
             </motion.div>
           ))}
         </div>
@@ -128,7 +128,13 @@ export default function Services() {
   );
 }
 
-function ServiceCard({ icon: Icon, title, description, index }) {
+interface ServiceCardProps {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+}
+
+function ServiceCard({ icon: Icon, title, description }: ServiceCardProps) {
   return (
     <motion.div
       whileHover={{

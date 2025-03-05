@@ -2,8 +2,15 @@
 
 import { motion } from "framer-motion";
 import { Instagram, Facebook, Mail } from "lucide-react";
+import Image from "next/image";
 
-const team = [
+interface TeamMember {
+  name: string;
+  position: string;
+  background: string;
+}
+
+const team: TeamMember[] = [
   {
     name: "Kiara Beatriz A. Bonifacio",
     position: "Chief Executive Officer",
@@ -40,6 +47,12 @@ const team = [
     background: "BS Packaging Engineering",
   },
 ];
+
+interface TeamCardProps {
+  name: string;
+  position: string;
+  background: string;
+}
 
 export default function Team() {
   return (
@@ -97,7 +110,7 @@ export default function Team() {
   );
 }
 
-function TeamCard({ name, position, background }) {
+function TeamCard({ name, position, background }: TeamCardProps) {
   return (
     <motion.div
       whileHover={{ y: -10 }}
@@ -105,11 +118,15 @@ function TeamCard({ name, position, background }) {
     >
       <div className="h-24 bg-gradient-to-r from-[#0078AD] to-[#4A9A96]"></div>
       <div className="px-6 pt-0 pb-6 text-center relative">
-        <div className="w-24 h-24 bg-gradient-to-br from-[#0078AD] to-[#4A9A96] rounded-full mx-auto -mt-12 mb-4 flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg">
-          {name
-            .split(" ")
-            .map((part) => part[0])
-            .join("")}
+        <div className="w-24 h-24 mx-auto -mt-12 mb-4 relative">
+          <Image
+            src="/placeholder.jpg"
+            alt={`${name}'s photo`}
+            width={96}
+            height={96}
+            className="rounded-full border-4 border-white shadow-lg object-cover"
+            priority
+          />
         </div>
         <h3 className="text-xl font-semibold mb-1 text-[#0078AD]">{name}</h3>
         <p className="text-[#4A9A96] font-medium mb-1">{position}</p>

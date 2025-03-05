@@ -1,30 +1,30 @@
-"use client"
+"use client";
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import { Anchor, Fish, Droplet, WavesIcon as Wave } from "lucide-react"
-import { useRef, useEffect, useState } from "react"
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Anchor, Fish, Droplet, WavesIcon as Wave } from "lucide-react";
+import { useRef, useEffect, useState } from "react";
 
 export default function Hero() {
-  const containerRef = useRef(null)
-  const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 500], [0, 250])
-  const opacity = useTransform(scrollY, [0, 300], [1, 0])
+  const containerRef = useRef(null);
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 250]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   // Parallax effect for background elements
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      const { clientX, clientY } = e
-      const { innerWidth, innerHeight } = window
-      const x = clientX / innerWidth - 0.5
-      const y = clientY / innerHeight - 0.5
-      setMousePosition({ x, y })
-    }
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      const x = clientX / innerWidth - 0.5;
+      const y = clientY / innerHeight - 0.5;
+      setMousePosition({ x, y });
+    };
 
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   return (
     <section
@@ -145,7 +145,10 @@ export default function Hero() {
       </motion.div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div style={{ y, opacity }} className="max-w-3xl mx-auto text-center">
+        <motion.div
+          style={{ y, opacity }}
+          className="max-w-3xl mx-auto text-center"
+        >
           <motion.div
             initial={{ scale: 0, rotate: -10 }}
             animate={{ scale: 1, rotate: 0 }}
@@ -178,8 +181,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
-            Kuray Innovations transforms oyster shell waste into artificial reef structures, addressing marine ecosystem
-            degradation and waste management challenges.
+            Kuray Innovations transforms oyster shell waste into artificial reef
+            structures, addressing marine ecosystem degradation and waste
+            management challenges.
           </motion.p>
 
           <motion.div
@@ -195,7 +199,7 @@ export default function Hero() {
                 boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.2)",
               }}
               whileTap={{ scale: 0.95 }}
-              className="bg-[#7ADEDA] hover:bg-[#7ADEDA]/90 text-[#0078AD] font-bold py-4 px-8 rounded-full text-lg transition duration-300 ease-in-out inline-block shadow-lg"
+              className="bg-[#FFFFFF] hover:bg-[#7ADEDA] text-[#0078AD]/90 hover:text-white font-bold py-4 px-8 rounded-full text-lg transition duration-300 ease-in-out inline-block shadow-lg"
             >
               Discover Our Solutions
             </motion.a>
@@ -245,7 +249,11 @@ export default function Hero() {
 
       {/* Wave decoration */}
       <div className="absolute bottom-0 left-0 w-full">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          viewBox="0 0 1440 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M0,96L48,85.3C96,75,192,53,288,53.3C384,53,480,75,576,90.7C672,107,768,117,864,106.7C960,96,1056,64,1152,48C1248,32,1344,32,1392,32L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"
             fill="white"
@@ -253,6 +261,5 @@ export default function Hero() {
         </svg>
       </div>
     </section>
-  )
+  );
 }
-
